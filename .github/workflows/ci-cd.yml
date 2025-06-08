@@ -74,16 +74,16 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: cloud-policy-service-543643725
-          package: ./policy-service/target/policy-service-0.0.1-SNAPSHOT.jar
+          package: ../policy-service/target/policy-service-0.0.1-SNAPSHOT.jar
 
       - name: Deploy claim service
         uses: azure/webapps-deploy@v2
         with:
           app-name: cloud-claim-service-543643725
-          package: ./claim-service/target/claim-service-1.0-SNAPSHOT.jar
+          package: ../claim-service/target/claim-service-1.0-SNAPSHOT.jar
 
       - name: Deploy user service
         uses: azure/webapps-deploy@v2
         with:
           app-name: cloud-user-service-543643725
-          package: ./user-service/target/user-service-1.0-SNAPSHOT.jar
+          package: ../user-service/target/user-service-1.0-SNAPSHOT.jar
