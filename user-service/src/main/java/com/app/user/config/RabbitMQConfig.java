@@ -1,4 +1,4 @@
-package com.app.userservice.config;
+package com.app.user.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
@@ -7,22 +7,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String QUEUE = "claim.queue";
-    public static final String EXCHANGE = "claim.exchange";
-    public static final String ROUTING_KEY = "claim.submitted";
+    public static final String QUEUE_NAME = "log.queue";
+    public static final String EXCHANGE_NAME = "log.exchange";
+    public static final String ROUTING_KEY = "log.routingKey";
 
     @Bean
-    public Queue queue() {
-        return new Queue(QUEUE, false);
+    public Queue logQueue() {
+        return new Queue(QUEUE_NAME, true);
     }
 
     @Bean
-    public TopicExchange exchange() {
-        return new TopicExchange(EXCHANGE);
+    public DirectExchange logExchange() {
+        return new DirectExchange(EXCHANGE_NAME);
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
+    public Binding logBinding(Queue logQueue, DirectExchange logExchange) {
+        return BindingBuilder.bind(logQueue).to(logExchange).with(ROUTING_KEY);
     }
 }
